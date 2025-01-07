@@ -1,5 +1,5 @@
 {
-  "name": "nextplayground",
+  "name": "puntazov1",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,7 +15,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@playwright/test": "1.40.1",
+    "@playwright/test": "1.41.2",
     "@types/node": "20.10.4",
     "@types/react": "18.2.45",
     "typescript": "5.3.3",
