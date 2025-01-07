@@ -1,4 +1,4 @@
-[![Playwright Tests](https://github.com/iMihaiku/nextplayground/actions/workflows/playwright.yml/badge.svg)](https://github.com/iMihaiku/nextplayground/actions/workflows/playwright.yml)
+[![Playwright Tests](https://github.com/iMihaiku/nextplayground/actions/workflows/playwright.yml/badge.svg)](https://github.com/iMihaiku/puntazo_v1/actions/workflows/playwright.yml)
 
 ## Descripción
 
