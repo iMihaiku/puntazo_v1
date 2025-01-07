@@ -1,3 +1,3 @@
-export function clientExample() {
+export function clientExample(): string {
   return 'client execution'
 }

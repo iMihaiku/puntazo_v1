@@ -4,9 +4,11 @@ import { clientExample } from '@/lib/clientActions'
 import { serverExample } from '@/lib/actions'
 import style from './page.module.css'
 
-export default function Page() {
-  const handleClick = () => {
-    serverExample().then((res) => console.log('serverExample', res))
+export default function Page(): JSX.Element {
+  const handleClick = (): void => {
+    void serverExample().then((res) => {
+      console.log('serverExample', res)
+    })
     console.log('clientExample', clientExample())
   }
   return (
