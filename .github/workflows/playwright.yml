@@ -41,7 +41,7 @@ jobs:
     - uses: actions/upload-artifact@v4.5.0
       with:
         name: next
-        path: src
+        path: build
   Test:
     needs: [Lint, Build]
     runs-on: ubuntu-latest
@@ -57,7 +57,7 @@ jobs:
     - uses: actions/download-artifact@v4
       with:
         name: next
-        path: src
+        path: build
     - name: Start application
       run: npm run dev &
       env:

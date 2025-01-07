@@ -2,7 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
     "lib": [
       "dom",
@@ -29,11 +31,13 @@
     "target": "ESNext"
   },
   "include": [
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/app/page.jsx"  ],
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
+    "src/app/page.jsx",
+    "build/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
