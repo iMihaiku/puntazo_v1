@@ -38,10 +38,10 @@ jobs:
       run: npm ci
     - name: Build
       run: npm run build
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v4.5.0
       with:
         name: next
-        path: ./.next/
+        path: src
   Test:
     needs: [Lint, Build]
     runs-on: ubuntu-latest
@@ -57,7 +57,7 @@ jobs:
     - uses: actions/download-artifact@v4
       with:
         name: next
-        path: ./.next/
+        path: src
     - name: Start application
       run: npm run dev &
       env:
