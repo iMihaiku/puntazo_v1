@@ -1,21 +1,26 @@
-'use client'
-import Link from 'next/link'
-import { clientExample } from '@/lib/clientActions'
-import { serverExample } from '@/lib/actions'
-import style from './page.module.css'
+import Image from 'next/image'
+import './main.css'
+import homeImage from '@/resources/homeImage.jpg'
+import Separator from '@/components/Separator/Separator'
+import Introduction from '@/components/SectionContent/Introduction'
+import Presentation from '@/components/SectionContent/Presentation'
 
 export default function Page(): JSX.Element {
-  const handleClick = (): void => {
-    void serverExample().then((res) => {
-      console.log('serverExample', res)
-    })
-    console.log('clientExample', clientExample())
-  }
   return (
-    <div className={style.main}>
-      <h2 className="main">Home</h2>
-      <button onClick={handleClick}>Click me!</button>
-      <Link href="/about">About</Link>
-    </div>
+    <main>
+      <section className='presentation'>
+        <Image
+          src={homeImage}
+          alt="Imagen de presentacion donde vemos a una mujer
+           trabajando con un portatil mientras toma un cafe"
+        ></Image>
+        <div className='overlay'></div>
+        <Presentation />
+      </section>
+      <section className='introduction'>
+        <Separator />
+        <Introduction />
+      </section>
+    </main>
   )
 }
