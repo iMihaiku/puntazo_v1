@@ -1,12 +1,74 @@
-.sectionContainer{
+/*
+  INTRODUCTION
+*/
+.introductionContainer {
+  width: 100%;
+  background-color: var(--color-green);
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 1100px;
+  padding: 55px 0;
   min-width: 500px;
   margin: 50px 30px;
+  align-items: center;
+  gap: 25px;
 }
-.presentationContainer{
+.introductionContainer h1 {
+  font-size: 50px;
+  font-weight: 800;
+  text-align: center;
+  margin: 0;
+}
+.introductionContainer section {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  gap: 50px;
+  width: 100%;
+  max-width: 850px;
+  padding: 20px;
+  box-sizing: border-box;
+  justify-items: center;
+}
+.introductionContainer section p {
+  max-width: 65ch;
+  text-align: center;
+}
+@media (min-width: 1200px) {
+  .introductionContainer section {
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    max-width: 100%;
+  }
+}
+.introductionContainer h2 {
+  /*   text-align: center;
+margin-bottom: 10px;
+margin-top: 40px; */
+  font-size: 30px;
+}
+.introductionContainer p {
+  text-align: center;
+  font-size: 17px;
+}
+.points {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  height: 230px;
+}
+.pointsTitle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  gap: 20px;
+}
+
+/*
+  PRESENTATION
+*/
+.presentationContainer {
+  color: white;
   position: relative;
   height: 100%;
   display: flex;
@@ -15,17 +77,62 @@
   align-items: center;
   gap: 30px;
 }
-.presentationContainer h1{
+.presentationContainer h1 {
   font-size: 50px;
   text-wrap: auto;
   max-width: 510px;
   text-align: center;
   margin: 0 25px;
 }
-.presentationContainer p{
+.presentationContainer p {
   font-size: 22px;
   text-wrap: auto;
   max-width: 750px;
   text-align: center;
   margin: 0 25px;
+}
+
+/*
+  BANNER SECTION
+*/
+
+.bannerSection {
+  padding: 100px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 50px;
+  width: 85%;
+}
+.textContainer {
+  display: flex;
+  max-width: 500px;
+  min-width: 500px;
+  flex-direction: column;
+  gap: 30px;
+}
+.imageContainer {
+  height: 100%;
+  min-width: 300px;
+  background-color: blue;
+}
+
+.bannerSection h1 {
+  font-size: 50px;
+  text-wrap: auto;
+  max-width: 510px;
+  margin: 0;
+}
+.bannerSection p {
+  font-size: 22px;
+  text-wrap: auto;
+  max-width: 750px;
+  margin: 0;
+}
+.buttonContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }

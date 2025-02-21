@@ -4,17 +4,26 @@ import NavBar from './NavBar'
 import localFont from 'next/font/local'
 import ButtonReverse from '../Button/ButtonReverse'
 import Button from '../Button/Button'
+import BurgerSection from './BurgerSection.client'
+import SideMenu from './SideMenu.cliente'
 
 const rocketFont = localFont({ src: '../../resources/ROCKET WILDNESS.ttf' })
 export default function Header() {
   return (
-    <header className={`${styles.header}`}>
-      <NavBar>
-        <Logo />
-        <NavigationSections />
-        <SessionSection />
-      </NavBar>
-    </header>
+    <>
+      <header className={`${styles.header}`}>
+        <NavBar>
+          <div className={styles.navSectionsBlock}>
+            <Logo />
+            <NavigationSections />
+          </div>
+          <div className={styles.navSectionsBlock}>
+            <SessionSection />
+            <BurgerSection />
+          </div>
+        </NavBar>
+      </header>
+    </>
   )
 }
 
@@ -41,7 +50,6 @@ function NavigationSections() {
 
 function SessionSection() {
   const styleOverride = {
-    borderRadius: '0px',
     padding: '10px 20px'
   }
   return (

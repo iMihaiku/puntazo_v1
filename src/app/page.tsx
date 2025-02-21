@@ -4,6 +4,7 @@ import homeImage from '@/resources/homeImage.jpg'
 import Separator from '@/components/Separator/Separator'
 import Introduction from '@/components/SectionContent/Introduction'
 import Presentation from '@/components/SectionContent/Presentation'
+import Banner from '@/components/SectionContent/Banner'
 
 export default function Page(): JSX.Element {
   return (
@@ -19,6 +20,9 @@ export default function Page(): JSX.Element {
       </section>
       <section className='introduction'>
         <Separator />
+        <Banner />
+      </section>
+      <section className='banner'>
         <Introduction />
       </section>
     </main>

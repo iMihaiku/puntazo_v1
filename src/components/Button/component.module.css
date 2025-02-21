@@ -1,7 +1,7 @@
 .buttonPrimary {
-  background: linear-gradient(to left, #2dd4bf, #60a5fa);
-  text-shadow: 1px 1px 7px black;
-  color: white;
+  background: var(--color-gradient);
+  text-shadow: 1px 1px 7px #7b7b7b;
+  color: black;
   padding: 20px 30px;
   border: 0;
   border-radius: 5px;
@@ -11,27 +11,36 @@
 }
 
 .buttonPrimary:hover {
-  background: linear-gradient(to left, #28bda9, #518bd3);
+  background: var(--color-green);
 }
 
 .buttonReverse {
   position: relative;
-  border-image: linear-gradient(to left, #2dd4bf, #60a5fa) 1;
-  text-shadow: 1px 1px 7px black;
-  border-width: 1px;
-  border-style: solid;
+
+  text-shadow: 1px 1px 7px#7b7b7b;
+
   padding: 20px 30px;
-  border-radius: 13px;
+  border: 0px;
   font-size: 18px;
   color: white;
   background: transparent;
+  border-radius: 5px;
   cursor: pointer;
 }
-.buttonReverseOptional {
-  clip-path: circle(75px at center);
+.buttonReverse::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  padding: 3px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background: var(--color-gradient);
+  mask:
+    linear-gradient(#000 0 0) exclude,
+    linear-gradient(#000 0 0) content-box;
 }
 
 .buttonReverse:hover {
-  background: #56a18d;
-  border: 1px solid #56a18d;
+  background: var(--color-green);
 }

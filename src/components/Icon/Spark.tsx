@@ -1,7 +1,12 @@
 import style from './component.module.css'
+import IconProps from './interface'
 
-export default function SparkAI({ styleOverride }): JSX.Element {
-  const { customStyle, size, fill } = styleOverride
+export default function SparkAI({ styleOverride={} }: IconProps): JSX.Element {
+  const {
+    customStyle = {},
+    size = { width: 24, height: 24 },
+    fill = ''
+  } = styleOverride
   return (
     <div className={style.icon} style={customStyle}>
       <svg

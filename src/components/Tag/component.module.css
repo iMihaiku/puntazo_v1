@@ -1,0 +1,14 @@
+.tagContainer{
+  display: flex;
+  border-radius: 9999px;
+  padding: 10px 15px;
+}
+.tagDanger{
+  background-color:  #b95b5bc4;
+}
+.tagWarning{
+  background-color:  #c08f47c4;
+}
+.tagSuccess{
+  background-color:  var(--color-green);
+}

@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import './main.css'
 import Header from '@/components/NavBar/Header'
+import { DeviceProvider } from '@/hooks/useContextMobile'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,9 +17,11 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="es">
-      <body className={inter.className} id='body'>
-        <Header></Header>
-        {children}
+      <body className={inter.className} id="body">
+        <DeviceProvider>
+          <Header></Header>
+          {children}
+        </DeviceProvider>
       </body>
     </html>
   )
