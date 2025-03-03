@@ -1,12 +1,11 @@
 'use client'
 
-import { CSSProperties, useEffect, useRef, useState } from 'react'
+import { type CSSProperties, useEffect, useRef, useState } from 'react'
 import styles from './nav.module.css'
 import Burger from '../Icon/Burger'
 import { createPortal } from 'react-dom'
 import Book from '../Icon/Book'
 import Target from '../Icon/Target'
-import Brain from '../Icon/Brain'
 import Chart from '../Icon/Chart'
 import Trophy from '../Icon/Trophy'
 import Divider from '../Divider/Divider'
@@ -15,7 +14,7 @@ import Register from '../Icon/Register'
 import Link from 'next/link'
 import Foro from '../Icon/Foro'
 
-export default function BurgerSection() {
+export default function BurgerSection(): JSX.Element {
   const [showMenu, setShowMenu] = useState(false)
   const [isClient, setIsClient] = useState(false)
 
@@ -30,21 +29,21 @@ export default function BurgerSection() {
     if (showMenu) {
       document.body.style.overflow = 'hidden'
       document.body.style.paddingRight = '17px'
-      if (nav) {
+      if (nav !== null) {
         nav.style.paddingRight = '47px'
       }
     } else {
       document.body.style.overflow = 'auto'
       document.body.style.paddingRight = '0px'
-      if (nav) {
+      if (nav !== null) {
         nav.style.paddingRight = '30px'
       }
     }
   }, [showMenu])
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+    const handleClickOutside = (event: MouseEvent): void => {
+      if (ref.current !== null && !ref.current.contains(event.target as Node)) {
         setShowMenu(false)
       }
     }
@@ -59,7 +58,7 @@ export default function BurgerSection() {
     setIsClient(true)
   }, [])
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     setShowMenu(!showMenu)
   }
   const styleOverrideIcons = {

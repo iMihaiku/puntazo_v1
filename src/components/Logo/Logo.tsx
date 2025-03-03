@@ -4,7 +4,7 @@ import { memo } from 'react'
 
 const rocketFont = localFont({ src: '../../resources/ROCKET WILDNESS.ttf' })
 
-function Logo() {
+function Logo(): JSX.Element {
   return (
     <div className={rocketFont.className} id={styles.navLogo}>
       <span>Skill</span>

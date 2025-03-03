@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { useCallback, useReducer } from 'react'
 
 const defaultForm = {
@@ -14,20 +16,20 @@ const defaultErrors = {
   password: ' ',
   confirmPassword: ' '
 }
-function formReducer(state, action) {
+function formReducer(state, action): any {
   return {
     ...state,
     [action.name]: action.value
   }
 }
-function errorsReducer(state, action) {
+function errorsReducer(state, action): any {
   return {
     ...state,
     [action.name]: action.value
   }
 }
 
-export default function useControlRegisterForm() {
+export default function useControlRegisterForm(): any {
   const [form, dispatch] = useReducer(formReducer, defaultForm)
   const [errors, dispatchErrors] = useReducer(errorsReducer, defaultErrors)
 
@@ -44,7 +46,7 @@ export default function useControlRegisterForm() {
     },
     [form]
   )
-  const validateInput = (name, value, eForm) => {
+  const validateInput = (name, value, eForm): any => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/
     const formValue = eForm.target.form

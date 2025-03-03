@@ -1,14 +1,12 @@
 import { memo } from 'react'
 import style from './component.module.css'
-import IconProps from './interface'
+import type IconProps from './interface'
 
-function Apple({
-  styleOverride = {}
-}: IconProps): JSX.Element {
+function Apple({ styleOverride = {} }: IconProps): JSX.Element {
   const {
     customStyle = { position: 'relative', width: 24, height: 24 },
     size = { width: 24, height: 24 },
-    fill = ''
+    fill = 'none'
   } = styleOverride
   return (
     <div className={style.icon} style={customStyle}>
@@ -17,8 +15,8 @@ function Apple({
         width={size.width}
         height={size.height}
         viewBox="0 0 24 24"
-        fill="none"
-        stroke='currentColor'
+        fill={fill}
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"

@@ -19,7 +19,9 @@ export default function Introduction(): JSX.Element {
     <div className={style.bannerSection}>
       <div className={style.textContainer}>
         <div className={style.buttonContainer}>
-          <Tag tagStyle='success' styleOverride={{fontSize: '20px'}}>¡Aprende y Practica!</Tag>
+          <Tag tagStyle="success" styleOverride={{ fontSize: '20px' }}>
+            ¡Aprende y Practica!
+          </Tag>
         </div>
         <h1>Convierte el Aprendizaje en un Reto</h1>
 

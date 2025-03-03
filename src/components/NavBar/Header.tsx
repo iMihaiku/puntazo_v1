@@ -1,14 +1,12 @@
 import Link from 'next/link'
 import styles from './nav.module.css'
 import NavBar from './NavBar'
-import ButtonReverse from '../Button/ButtonReverse'
-import Button from '../Button/Button'
 import BurgerSection from './BurgerSection.client'
 import Logo from '@/components/Logo/Logo'
 import ButtonLink from '../Button/ButtonLink'
 import ButtonLinkReverse from '../Button/ButtonLinkReverse'
 
-export default async function Header() {
+export default async function Header(): Promise<JSX.Element> {
   return (
     <>
       <header className={styles.header}>
@@ -31,7 +29,7 @@ export default async function Header() {
   )
 }
 
-function NavigationSections() {
+function NavigationSections(): JSX.Element {
   return (
     <div className={styles.navLinks}>
       <Link href={'/home'}>Estudio</Link>
@@ -43,7 +41,7 @@ function NavigationSections() {
   )
 }
 
-function SessionSection() {
+function SessionSection(): JSX.Element {
   const styleOverride = {
     padding: '10px 20px',
     cursor: 'pointer'

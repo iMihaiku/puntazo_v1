@@ -2,16 +2,15 @@
 
 import { DeviceContext } from '@/hooks/useContextMobile'
 import styles from './nav.module.css'
-import { useContext, useEffect, useState } from 'react'
-import debouncer from '@/lib/debouncer'
+import { useContext } from 'react'
 import useScrollDetector from '@/hooks/useScrollDetector'
 
-export default function NavBar({ children }) {
+export default function NavBar({ children }): JSX.Element {
   const scrolled = useScrollDetector()
-  const context = useContext(DeviceContext)
+  useContext(DeviceContext)
   return (
     <nav
-      className={`${styles.nav} ${scrolled ? styles.scrolled : styles.animationHeader}`}
+      className={`${styles.nav} ${(scrolled ?? false) ? styles.scrolled : styles.animationHeader}`}
     >
       {children}
     </nav>

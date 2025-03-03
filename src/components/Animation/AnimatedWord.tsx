@@ -10,27 +10,33 @@ export default function AnimatedText(): JSX.Element {
   const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
-    const typewriterEffect = () => {
+    const typewriterEffect = (): void => {
       if (!isDeleting && text.length < fullText.length) {
         setText(fullText.slice(0, text.length + 1))
       } else if (isDeleting && text.length > 0) {
         setText(text.slice(0, -1))
       } else if (text.length === fullText.length) {
-        setTimeout(() => setIsDeleting(true), 2000)
+        setTimeout(() => {
+          setIsDeleting(true)
+        }, 2000)
       } else if (text.length === 0) {
         setIsDeleting(false)
       }
     }
 
     const typingTimer = setTimeout(typewriterEffect, isDeleting ? 50 : 40)
-    return () => clearTimeout(typingTimer)
-  }, [text])
+    return () => {
+      clearTimeout(typingTimer)
+    }
+  }, [text, isDeleting])
 
   useEffect(() => {
     const cursorTimer = setInterval(() => {
       setShowCursor((prev) => !prev)
     }, 650)
-    return () => clearInterval(cursorTimer)
+    return () => {
+      clearInterval(cursorTimer)
+    }
   }, [])
 
   return (

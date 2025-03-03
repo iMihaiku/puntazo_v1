@@ -1,15 +1,12 @@
 import { memo } from 'react'
 import style from './component.module.css'
-import IconProps from './interface'
+import type IconProps from './interface'
 
-function Facebook({
-  styleOverride = {}
-}: IconProps): JSX.Element {
+function Facebook({ styleOverride = {} }: IconProps): JSX.Element {
   const {
-    customStyle = {position: 'relative', width: 24, height: 24},
+    customStyle = { position: 'relative', width: 24, height: 24 },
     size = { width: 24, height: 24 },
-    fill = '',
-
+    fill = 'none'
   } = styleOverride
   return (
     <div className={style.icon} style={customStyle}>
@@ -18,7 +15,7 @@ function Facebook({
         width={size.width}
         height={size.height}
         viewBox="0 0 1024 1024"
-        fill="none"
+        fill={fill}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"

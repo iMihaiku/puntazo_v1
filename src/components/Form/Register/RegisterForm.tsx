@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/promise-function-async */
 'use client'
 
 import styles from './register.module.css'
@@ -17,13 +19,13 @@ const buttonStyleOverride = {
   padding: '14px 20px',
   width: '100%'
 }
-export default function RegisterForm() {
+export default function RegisterForm(): JSX.Element {
   const router = useRouter()
   const { form, errors, handleChange, handleSubmit } = useControlRegisterForm()
-  
-  const handleSocial = async (e) => {
+
+  const handleSocial = async (e): Promise<void> => {
     console.log('handleSocial', e.currentTarget.name)
-    e.preventDefault
+    e.preventDefault()
     const social = e.currentTarget.name
     console.log(`Log in with ${social}`)
     fetch(`http://localhost:8080/users/oauth/${social}`, {
@@ -33,10 +35,12 @@ export default function RegisterForm() {
       .then((res) => res.json())
       .then((data) => {
         // lets redirect to the oauth page
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         router.replace(data.url)
-
       })
-      .catch((err) => console.error('Error en OAuth:', err))
+      .catch((err) => {
+        console.error('Error en OAuth:', err)
+      })
   }
   return (
     <form

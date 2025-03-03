@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import style from './component.module.css'
-import IconProps from './interface'
+import type IconProps from './interface'
 
 export default function Burger({ styleOverride = {} }: IconProps): JSX.Element {
   const {

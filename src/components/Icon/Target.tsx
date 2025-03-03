@@ -1,5 +1,5 @@
 import style from './component.module.css'
-import IconProps from './interface'
+import type IconProps from './interface'
 
 export default function Target({
   styleOverride = {}
@@ -7,7 +7,7 @@ export default function Target({
   const {
     customStyle = {},
     size = { width: 24, height: 24 },
-    fill = '',
+    fill = 'none',
     stroke = 'currentcolor'
   } = styleOverride
   return (
@@ -17,7 +17,7 @@ export default function Target({
         width={size.width}
         height={size.height}
         viewBox="0 0 28 28"
-        fill="none"
+        fill={fill}
         stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"

@@ -1,11 +1,11 @@
 import style from './component.module.css'
-import IconProps from './interface'
+import type IconProps from './interface'
 
 export default function Login({ styleOverride = {} }: IconProps): JSX.Element {
   const {
     customStyle = {},
     size = { width: 24, height: 24 },
-    fill = '',
+    fill = 'none',
     stroke = 'currentcolor'
   } = styleOverride
   return (
@@ -15,7 +15,7 @@ export default function Login({ styleOverride = {} }: IconProps): JSX.Element {
         width={size.width}
         height={size.height}
         viewBox="0 0 24 24"
-        fill="none"
+        fill={fill}
         stroke={stroke}
         strokeWidth="2"
         strokeLinecap="round"

@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/promise-function-async */
 import { cookies } from 'next/headers'
 import AnimatedText from '../Animation/AnimatedWord'
 import Button from '../Button/Button'
-import ButtonReverse from '../Button/ButtonReverse'
 import SparkAI from '../Icon/Spark'
 import style from './component.module.css'
 export default function Introduction(): JSX.Element {
@@ -17,26 +18,29 @@ export default function Introduction(): JSX.Element {
     },
     fill: '#fff'
   }
-  const handleTest = async () => {
+  const handleTest = async (): Promise<void> => {
     'use server'
     const token = (await cookies()).get('session_token')?.value
 
-    if (!token) {
+    if (token === null) {
       console.error('Token no encontrado')
       return
     }
 
     fetch('http://localhost:8080/users/test', {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
-       }
+      }
     })
       .then((res) => {
         console.log(res.status)
       })
       .then((data) => {})
-      .catch((err) => console.error('Error en OAuth:', err))
+      .catch((err) => {
+        console.error('Error en OAuth:', err)
+      })
   }
   return (
     <div className={style.presentationContainer}>

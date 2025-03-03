@@ -14,13 +14,10 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }): Promise<JSX.Element> {
-
   return (
-    <html lang="es" >
+    <html lang="es">
       <body className={inter.className} id="body">
-        <DeviceProvider>
-          {children}
-        </DeviceProvider>
+        <DeviceProvider>{children}</DeviceProvider>
       </body>
     </html>
   )

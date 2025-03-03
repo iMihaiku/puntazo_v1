@@ -4,9 +4,9 @@ import style from './component.module.css'
 
 export default function Button({
   children,
-  action = ()=>{},
+  action = () => {},
   styleOverride = {},
-  type = 'button',
+  type = 'button'
 }): JSX.Element {
   return (
     <button
