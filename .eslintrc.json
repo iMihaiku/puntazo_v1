@@ -12,6 +12,6 @@
     "@typescript-eslint/space-before-function-paren": "off",
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-undef": 0,
-    "@typescript-eslint/no-non-null-assertion": 0,
+    "@typescript-eslint/no-non-null-assertion": 0
   }
 }
