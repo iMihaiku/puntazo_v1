@@ -1,11 +1,11 @@
 .buttonPrimary {
   background: var(--color-gradient);
-  text-shadow: 1px 1px 7px #7b7b7b;
+  text-shadow: 1px 1px 12px #979797;
   color: black;
   padding: 20px 30px;
   border: 0;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 17px;
   cursor: pointer;
   position: relative;
 }
@@ -17,11 +17,11 @@
 .buttonReverse {
   position: relative;
 
-  text-shadow: 1px 1px 7px#7b7b7b;
+  text-shadow: 1px 1px 12px #979797;
 
   padding: 20px 30px;
   border: 0px;
-  font-size: 18px;
+  font-size: 17px;
   color: white;
   background: transparent;
   border-radius: 5px;

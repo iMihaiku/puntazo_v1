@@ -1,38 +1,33 @@
 import Link from 'next/link'
 import styles from './nav.module.css'
 import NavBar from './NavBar'
-import localFont from 'next/font/local'
 import ButtonReverse from '../Button/ButtonReverse'
 import Button from '../Button/Button'
 import BurgerSection from './BurgerSection.client'
-import SideMenu from './SideMenu.cliente'
+import Logo from '@/components/Logo/Logo'
+import ButtonLink from '../Button/ButtonLink'
+import ButtonLinkReverse from '../Button/ButtonLinkReverse'
 
-const rocketFont = localFont({ src: '../../resources/ROCKET WILDNESS.ttf' })
-export default function Header() {
+export default async function Header() {
   return (
     <>
-      <header className={`${styles.header}`}>
+      <header className={styles.header}>
         <NavBar>
           <div className={styles.navSectionsBlock}>
             <Logo />
             <NavigationSections />
           </div>
-          <div className={styles.navSectionsBlock}>
+          <div
+            className={
+              styles.navSectionsBlock + ' ' + styles.navSectionsBlockRight
+            }
+          >
             <SessionSection />
             <BurgerSection />
           </div>
         </NavBar>
       </header>
     </>
-  )
-}
-
-function Logo() {
-  return (
-    <div className={rocketFont.className} id={styles.navLogo}>
-      <span>Skill</span>
-      <span>Check</span>
-    </div>
   )
 }
 
@@ -50,20 +45,17 @@ function NavigationSections() {
 
 function SessionSection() {
   const styleOverride = {
-    padding: '10px 20px'
+    padding: '10px 20px',
+    cursor: 'pointer'
   }
   return (
     <div className={styles.navSession}>
-      <ButtonReverse styleOverride={styleOverride}>
-        <Link href={''} className={styles.login}>
-          Login
-        </Link>
-      </ButtonReverse>
-      <Button styleOverride={styleOverride}>
-        <Link href={''} className={styles.signin}>
-          Sign In
-        </Link>
-      </Button>
+      <ButtonLinkReverse styleOverride={styleOverride} href={'/login'}>
+        Login
+      </ButtonLinkReverse>
+      <ButtonLink styleOverride={styleOverride} href={'/register'}>
+        Register
+      </ButtonLink>
     </div>
   )
 }

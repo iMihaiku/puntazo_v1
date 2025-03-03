@@ -1,21 +1,20 @@
-'use client'
-
+import Link from 'next/link'
 import style from './component.module.css'
 
 export default function Button({
   children,
-  action = ()=>{},
+  href,
   styleOverride = {},
-  type = 'button',
+  type = 'button'
 }): JSX.Element {
   return (
-    <button
-      onClick={action}
+    <Link
       className={style.buttonPrimary}
       style={styleOverride}
       type={type as 'button' | 'submit' | 'reset'}
+      href={href}
     >
       {children}
-    </button>
+    </Link>
   )
 }
