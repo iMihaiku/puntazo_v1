@@ -67,3 +67,11 @@
   gap: 5px;
   width: 100%;
 }
+.submitEnable{
+  
+}
+.submitDisabled{
+  background: #ebeaec !important;
+  color: #b3b3b3 !important;
+  cursor: not-allowed !important;
+}

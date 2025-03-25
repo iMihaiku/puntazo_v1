@@ -4,6 +4,7 @@ import style from './component.module.css'
 
 export default function Button({
   children,
+  className = '',
   action = () => {},
   styleOverride = {},
   type = 'button'
@@ -11,7 +12,7 @@ export default function Button({
   return (
     <button
       onClick={action}
-      className={style.buttonPrimary}
+      className={`${className} ${style.buttonPrimary}`}
       style={styleOverride}
       type={type as 'button' | 'submit' | 'reset'}
     >

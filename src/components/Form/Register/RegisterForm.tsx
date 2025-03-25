@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/promise-function-async */
 'use client'
@@ -11,8 +12,9 @@ import Logo from '@/components/Logo/Logo'
 import Facebook from '@/components/Icon/Facebook'
 import Google from '@/components/Icon/Google'
 import Apple from '@/components/Icon/Apple'
-import useControlRegisterForm from './useControlForm'
 import { useRouter } from 'next/navigation'
+import { useRegister } from './useRegister'
+import { useEffect } from 'react'
 
 const buttonStyleOverride = {
   fontSize: '19px',
@@ -21,7 +23,21 @@ const buttonStyleOverride = {
 }
 export default function RegisterForm(): JSX.Element {
   const router = useRouter()
-  const { form, errors, handleChange, handleSubmit } = useControlRegisterForm()
+  const {
+    form,
+    errors,
+    handleChange,
+    handleSubmit,
+    isValidForm,
+    submitResult
+  } = useRegister()
+
+  useEffect(() => {
+    if (submitResult !== null) {
+      console.log('Resultado del registro:', submitResult)
+      router.replace(submitResult.url)
+    }
+  }, [router, submitResult])
 
   const handleSocial = async (e): Promise<void> => {
     console.log('handleSocial', e.currentTarget.name)
@@ -34,8 +50,6 @@ export default function RegisterForm(): JSX.Element {
     })
       .then((res) => res.json())
       .then((data) => {
-        // lets redirect to the oauth page
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         router.replace(data.url)
       })
       .catch((err) => {
@@ -92,14 +106,14 @@ export default function RegisterForm(): JSX.Element {
           error={errors.email.length > 1}
         />
         <TextField
-          name="firstName"
-          value={form.firstName}
+          name="name"
+          value={form.name}
           type="text"
           label="Nombre"
           variant="outlined"
           size="small"
-          helperText={errors.firstName}
-          error={errors.firstName.length > 1}
+          helperText={errors.name}
+          error={errors.name.length > 1}
         />
         <TextField
           name="lastName"
@@ -133,7 +147,11 @@ export default function RegisterForm(): JSX.Element {
         />
       </div>
 
-      <Button styleOverride={buttonStyleOverride} type="submit">
+      <Button
+        styleOverride={buttonStyleOverride}
+        type="submit"
+        className={isValidForm ? styles.submitEnable : styles.submitDisabled}
+      >
         Registrarse
       </Button>
     </form>

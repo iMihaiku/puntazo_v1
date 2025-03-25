@@ -5,6 +5,8 @@ import AnimatedText from '../Animation/AnimatedWord'
 import Button from '../Button/Button'
 import SparkAI from '../Icon/Spark'
 import style from './component.module.css'
+import { redirect } from 'next/navigation'
+
 export default function Introduction(): JSX.Element {
   const sparkStyleOverride = {
     customStyle: {
@@ -27,7 +29,7 @@ export default function Introduction(): JSX.Element {
       return
     }
 
-    fetch('http://localhost:8080/users/test', {
+    const result = await fetch('http://localhost:8080/users/test', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -35,12 +37,15 @@ export default function Introduction(): JSX.Element {
       }
     })
       .then((res) => {
-        console.log(res.status)
+        return res.json()
       })
-      .then((data) => {})
+      .then((data) => {
+        return data
+      })
       .catch((err) => {
-        console.error('Error en OAuth:', err)
+        return err
       })
+    redirect(result.url)
   }
   return (
     <div className={style.presentationContainer}>
