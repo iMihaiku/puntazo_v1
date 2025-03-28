@@ -117,7 +117,7 @@ export default function BurgerSection(): JSX.Element {
               <li className={styles.sideMenuListItem}>
                 <div>
                   <Login styleOverride={styleOverrideIcons} />
-                  <Link href={''}>Acceder</Link>
+                  <Link href={'/login'}>Acceder</Link>
                 </div>
               </li>
               <li className={styles.sideMenuListItem}>

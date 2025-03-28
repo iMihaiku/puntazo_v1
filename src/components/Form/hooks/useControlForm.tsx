@@ -8,6 +8,8 @@ import {
 } from 'react'
 import { type FormController } from './interfaces'
 
+type FormDispatch<T> = (action: { name: keyof T; value: string }) => void
+
 function formReducer<T>(
   state: T,
   action: {
@@ -52,7 +54,7 @@ export default function useControlForm<
     value: string,
     form: FormValues
   ) => Array<{ name: string; value: string }>,
-  onSubmit: (form: FormValues) => Promise<void>
+  onSubmit: (form: FormValues) => Promise<Response | Error>
 ): FormController<FormValues> {
   console.log('useControlForm')
   const defaultForm = useMemo(
@@ -64,8 +66,11 @@ export default function useControlForm<
     []
   )
   const [submitResult, setSubmitResult] = useState<any>(null)
-  const [form, dispatch] = useReducer(formReducer<FormValues>, defaultForm)
-  const [errors, dispatchErrors] = useReducer(
+  const [form, dispatch]: [FormValues, FormDispatch<FormValues>] = useReducer(
+    formReducer<FormValues>,
+    defaultForm
+  )
+  const [errors, dispatchErrors]: [FormValues, FormDispatch<FormValues>] = useReducer(
     errorsReducer<FormValues>,
     defaultErrors
   )
@@ -78,11 +83,11 @@ export default function useControlForm<
   }, [form])
 
   const handleChange = useCallback(
-    (e) => {
+    (e: React.ChangeEvent<HTMLFormElement>) => {
       dispatch({ name: e.target.name, value: e.target.value })
       const validationResult = validateInput(
         e.target.name,
-        e.target.value,
+        e.target.value as string,
         formRef.current
       )
 
@@ -99,6 +104,8 @@ export default function useControlForm<
   useEffect(() => {
     const anyError = Object.values(errors).every((error) => error === ' ')
     const anyEmpty = Object.values(form).some((value) => value === '')
+    console.log('anyEmpty', form)
+    console.log('anyError', anyError)
     setValidForm(anyError && !anyEmpty)
   }, [form])
 

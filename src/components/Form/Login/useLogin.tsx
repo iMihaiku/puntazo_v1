@@ -1,26 +1,23 @@
 'use client'
 import { useCallback } from 'react'
 import useControlForm from '../hooks/useControlForm'
-import { type FormRegisterValues } from './interfaces'
+import { type FormValues } from './interfaces'
 import { type FormController } from '../hooks/interfaces'
 
-export const useRegister = (): FormController<FormRegisterValues> => {
+export const useLogin = (): FormController<FormValues> => {
   // Definimos el template del formulario
-  const formTemplate: FormRegisterValues = {
-    name: '',
-    lastName: '',
+  const formTemplate: FormValues = {
     email: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
   }
 
-  const handleRegisterSubmit = useCallback(
-    async (formData: FormRegisterValues): Promise<Response | Error> => {
+  const handleSubmit = useCallback(
+    async (formData: FormValues): Promise<Response | Error> => {
       try {
         console.log('Enviando datos de registro:', formData)
 
         const result: Response = await fetch(
-          'http://localhost:8080/users/register',
+          'http://localhost:8080/users/login',
           {
             method: 'POST',
             credentials: 'include',
@@ -35,17 +32,13 @@ export const useRegister = (): FormController<FormRegisterValues> => {
               return res.json()
             }
             if (res.status === 400) {
-              throw new Error('Datos inválidos: carecteres no validos')
+              throw new Error('Datos inválidos: Algunos caracteres no estan permitidos')
             }
             if (res.status === 401) {
-              throw new Error('Datos inválidos: faltan campos obligatorios')
-            }
-            if (res.status === 409) {
-              throw new Error('Error en el registro: el correo ya existe')
+              throw new Error('Las credenciales no son validas')
             }
           })
           .then((data) => {
-            console.log('Registro exitoso:', data)
             return data
           })
           .catch((err: Error) => {
@@ -54,7 +47,7 @@ export const useRegister = (): FormController<FormRegisterValues> => {
             }
             throw new Error(err.message)
           })
-        console.log('Resultado del registro:', result)
+        console.log('Resultado del acceso:', result)
         return result
       } catch (error) {
         return error
@@ -63,13 +56,13 @@ export const useRegister = (): FormController<FormRegisterValues> => {
     []
   )
 
-  const registerForm = useControlForm<FormRegisterValues>(
+  const form = useControlForm<FormValues>(
     formTemplate,
     validateInput,
-    handleRegisterSubmit
+    handleSubmit
   )
 
-  return registerForm
+  return form
 }
 
 function validateInput(
@@ -88,46 +81,10 @@ function validateInput(
         : { name, value: ' ' }
       validations.push(res)
       break
-    case 'name':
-      res =
-        value.length < 3
-          ? { name, value: 'Nombre demasiado corto' }
-          : { name, value: ' ' }
-      validations.push(res)
-      break
-    case 'lastName':
-      res =
-        value.length < 3
-          ? { name, value: 'Apellidos demasiado cortos' }
-          : { name, value: ' ' }
-      validations.push(res)
-      break
     case 'password':
       res = !passwordRegex.test(value)
-        ? {
-            name,
-            value:
-              'La contraseña debe tener al menos 6 caracteres, una mayúscula, una minúscula y un número'
-          }
+        ? { name, value: 'La contraseña tiene un formato no valido' }
         : { name, value: ' ' }
-
-      validations.push(res)
-
-      res =
-        formRef.confirmPassword !== '' && formRef.confirmPassword !== value
-          ? {
-              name: 'confirmPassword',
-              value: 'Las contraseñas no coinciden'
-            }
-          : { name: 'confirmPassword', value: ' ' }
-      validations.push(res)
-
-      break
-    case 'confirmPassword':
-      res =
-        value !== formRef.password
-          ? { name, value: 'Las contraseñas no coinciden' }
-          : { name, value: ' ' }
       validations.push(res)
       break
     default:

@@ -1,0 +1,31 @@
+import style from './component.module.css'
+import type IconProps from './interface'
+
+export default function Success({ styleOverride = {} }: IconProps): JSX.Element {
+  const {
+    customStyle = {},
+    size = { width: 24, height: 24 },
+    fill = 'none',
+    stroke = 'currentcolor'
+  } = styleOverride
+  return (
+    <div className={style.icon} style={customStyle}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size.width}
+        height={size.height}
+        viewBox="0 0 24 24"
+        fill={fill}
+        stroke={stroke}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="m9 12 2 2 4-4" />
+      </svg>
+    </div>
+  )
+}
+
+//  ⌘

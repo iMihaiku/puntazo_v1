@@ -15,6 +15,7 @@ import Apple from '@/components/Icon/Apple'
 import { useRouter } from 'next/navigation'
 import { useRegister } from './useRegister'
 import { useEffect } from 'react'
+import { useToast, ToastType } from '@/components/Toast/useContextToast'
 
 const buttonStyleOverride = {
   fontSize: '19px',
@@ -22,6 +23,7 @@ const buttonStyleOverride = {
   width: '100%'
 }
 export default function RegisterForm(): JSX.Element {
+  const { showToast } = useToast()
   const router = useRouter()
   const {
     form,
@@ -33,14 +35,18 @@ export default function RegisterForm(): JSX.Element {
   } = useRegister()
 
   useEffect(() => {
-    if (submitResult !== null) {
-      console.log('Resultado del registro:', submitResult)
+    if (submitResult instanceof Error) {
+      showToast({
+        message: submitResult.message,
+        type: ToastType.ERROR,
+        duration: 5000
+      })
+    } else if (submitResult !== null && submitResult !== undefined) {
       router.replace(submitResult.url)
     }
   }, [router, submitResult])
 
   const handleSocial = async (e): Promise<void> => {
-    console.log('handleSocial', e.currentTarget.name)
     e.preventDefault()
     const social = e.currentTarget.name
     console.log(`Log in with ${social}`)
@@ -53,7 +59,12 @@ export default function RegisterForm(): JSX.Element {
         router.replace(data.url)
       })
       .catch((err) => {
-        console.error('Error en OAuth:', err)
+        showToast({
+          message: 'Error al iniciar sesión con ' + social,
+          type: ToastType.ERROR,
+          duration: 5000
+        })
+        console.log('Error en OAuth:', err)
       })
   }
   return (
