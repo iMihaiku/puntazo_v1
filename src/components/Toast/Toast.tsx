@@ -30,6 +30,7 @@ const TOAST_ICON = {
 export default function Toast(props: ToastProps): JSX.Element | null {
   const { message, type, duration = 3000, onClose } = props
   const [isVisible, setIsVisible] = useState<boolean>(true)
+  const [isHiding, setIsHiding] = useState<boolean>(false)
   const styleOverride = {
     background: type !== undefined ? TOAST_BACKGROUNDS[type] : '#838e97'
   }
@@ -47,33 +48,38 @@ export default function Toast(props: ToastProps): JSX.Element | null {
   }, [duration])
 
   const handleClose = (): void => {
-    setIsVisible(false)
-    if (onClose !== undefined) onClose()
+    setIsHiding(true)
+    setTimeout(() => {
+      setIsVisible(false)
+      if (onClose !== undefined) onClose()
+    }, 500)
   }
 
   if (!isVisible) return null
 
   return (
-    <div
-      className={styles.toastContainer}
-      data-type={type}
-      style={styleOverride}
-    >
-      <div className={styles.toastBody}>
-        <div className={styles.toastIcon}>
-          {type !== undefined ? TOAST_ICON[type] : <Error />}
-        </div>
-        <div className={styles.toastContent}>
-          <h3>
-            {type !== undefined ? TOAST_TITLE[type] : 'Algo malio sal 😿'}
-          </h3>
-          <span>{message}</span>
-        </div>
-      </div>
+    <div className={styles.toastWrapper}>
       <div
-        className={`${styles.toastLoad} ${styles.toastLoadAnimation}`}
-        style={progressStyle}
-      ></div>
+        className={`${styles.toastContainer} ${isHiding ? styles.hiding : ''}`}
+        data-type={type}
+        style={styleOverride}
+      >
+        <div className={styles.toastBody}>
+          <div className={styles.toastIcon}>
+            {type !== undefined ? TOAST_ICON[type] : <Error />}
+          </div>
+          <div className={styles.toastContent}>
+            <h3>
+              {type !== undefined ? TOAST_TITLE[type] : 'Algo malio sal 😿'}
+            </h3>
+            <span>{message}</span>
+          </div>
+        </div>
+        <div
+          className={`${styles.toastLoad} ${styles.toastLoadAnimation}`}
+          style={progressStyle}
+        ></div>
+      </div>
     </div>
   )
 }

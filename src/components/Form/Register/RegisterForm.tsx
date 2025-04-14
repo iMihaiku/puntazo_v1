@@ -68,11 +68,7 @@ export default function RegisterForm(): JSX.Element {
       })
   }
   return (
-    <form
-      className={stylesDefault.formDefault + ' ' + styles.form}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
-    >
+    <section className={stylesDefault.formDefault + ' ' + styles.form}>
       <section className={styles.formHeader}>
         <Logo />
         <h2>Regístrate gratis</h2>
@@ -105,66 +101,68 @@ export default function RegisterForm(): JSX.Element {
       <Divider
         styleOverride={{ borderColor: 'rgb(44, 44, 44)', margin: '15px 0' }}
       />
-      <div className={styles.formFields}>
-        <TextField
-          name="email"
-          value={form.email}
-          type="email"
-          label="Correo"
-          variant="outlined"
-          size="small"
-          helperText={errors.email}
-          error={errors.email.length > 1}
-        />
-        <TextField
-          name="name"
-          value={form.name}
-          type="text"
-          label="Nombre"
-          variant="outlined"
-          size="small"
-          helperText={errors.name}
-          error={errors.name.length > 1}
-        />
-        <TextField
-          name="lastName"
-          value={form.lastName}
-          type="text"
-          label="Apellido"
-          variant="outlined"
-          size="small"
-          helperText={errors.lastName}
-          error={errors.lastName.length > 1}
-        />
-        <TextField
-          name="password"
-          value={form.password}
-          type="password"
-          label="Contraseña"
-          variant="outlined"
-          size="small"
-          helperText={errors.password}
-          error={errors.password.length > 1}
-        />
-        <TextField
-          name="confirmPassword"
-          value={form.confirmPassword}
-          type="password"
-          label="Confirmar contraseña"
-          variant="outlined"
-          size="small"
-          helperText={errors.confirmPassword}
-          error={errors.confirmPassword.length > 1}
-        />
-      </div>
+      <form onChange={handleChange} onSubmit={handleSubmit}>
+        <div className={styles.formFields}>
+          <TextField
+            name="email"
+            value={form.email}
+            type="email"
+            label="Correo"
+            variant="outlined"
+            size="small"
+            helperText={errors.email}
+            error={errors.email.length > 1}
+          />
+          <TextField
+            name="name"
+            value={form.name}
+            type="text"
+            label="Nombre"
+            variant="outlined"
+            size="small"
+            helperText={errors.name}
+            error={errors.name.length > 1}
+          />
+          <TextField
+            name="lastName"
+            value={form.lastName}
+            type="text"
+            label="Apellido"
+            variant="outlined"
+            size="small"
+            helperText={errors.lastName}
+            error={errors.lastName.length > 1}
+          />
+          <TextField
+            name="password"
+            value={form.password}
+            type="password"
+            label="Contraseña"
+            variant="outlined"
+            size="small"
+            helperText={errors.password}
+            error={errors.password.length > 1}
+          />
+          <TextField
+            name="confirmPassword"
+            value={form.confirmPassword}
+            type="password"
+            label="Confirmar contraseña"
+            variant="outlined"
+            size="small"
+            helperText={errors.confirmPassword}
+            error={errors.confirmPassword.length > 1}
+          />
+        </div>
 
-      <Button
-        styleOverride={buttonStyleOverride}
-        type="submit"
-        className={isValidForm ? styles.submitEnable : styles.submitDisabled}
-      >
-        Registrarse
-      </Button>
-    </form>
+        <Button
+          styleOverride={buttonStyleOverride}
+          type="submit"
+          className={isValidForm ? styles.submitEnable : styles.submitDisabled}
+        >
+          Registrarse
+        </Button>
+      </form>
+    </section>
   )
 }

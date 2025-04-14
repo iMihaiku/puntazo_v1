@@ -13,8 +13,20 @@ import Login from '../Icon/Login'
 import Register from '../Icon/Register'
 import Link from 'next/link'
 import Foro from '../Icon/Foro'
+import { useSession } from '@/hooks/useContextSession'
+import { UserHeader } from '../User/UserHeader'
+
+const styleOverrideIcons = {
+  customStyle: {
+    position: 'relative' as 'relative',
+    height: '24px',
+    width: '24px'
+  },
+  size: { width: '24px', height: '24px' }
+}
 
 export default function BurgerSection(): JSX.Element {
+  const { isValid, user } = useSession()
   const [showMenu, setShowMenu] = useState(false)
   const [isClient, setIsClient] = useState(false)
 
@@ -33,6 +45,13 @@ export default function BurgerSection(): JSX.Element {
         nav.style.paddingRight = '47px'
       }
     } else {
+      document.body.style.overflow = 'auto'
+      document.body.style.paddingRight = '0px'
+      if (nav !== null) {
+        nav.style.paddingRight = '30px'
+      }
+    }
+    return () => {
       document.body.style.overflow = 'auto'
       document.body.style.paddingRight = '0px'
       if (nav !== null) {
@@ -61,14 +80,19 @@ export default function BurgerSection(): JSX.Element {
   const handleClick = (): void => {
     setShowMenu(!showMenu)
   }
-  const styleOverrideIcons = {
-    customStyle: {
-      position: 'relative' as 'relative',
-      height: '24px',
-      width: '24px'
-    },
-    size: { width: '24px', height: '24px' }
+
+  const handleLogout = (): void => {
+    // setShowMenu(!showMenu)
   }
+
+  const handleProfileClick = (): void => {
+    // setShowMenu(!showMenu)
+  }
+
+  const handleSettingsClick = (): void => {
+    // setShowMenu(!showMenu)
+  }
+  console.log(user)
   return (
     <>
       <div className={styles.navMenu} onClick={handleClick}>
@@ -84,48 +108,61 @@ export default function BurgerSection(): JSX.Element {
               }
             >
               <li className={styles.sideMenuListItem}>
-                <div>
+                <div className={styles.listElementContainer}>
                   <Book styleOverride={styleOverrideIcons} />
                   <Link href={''}>Estudio</Link>
                 </div>
               </li>
               <li className={styles.sideMenuListItem}>
-                <div>
+                <div className={styles.listElementContainer}>
                   <Target styleOverride={styleOverrideIcons} />
                   <Link href={''}>Comunidad</Link>
                 </div>
               </li>
               <li className={styles.sideMenuListItem}>
-                <div>
+                <div className={styles.listElementContainer}>
                   <Foro styleOverride={styleOverrideIcons} />
                   <Link href={''}>Foro</Link>
                 </div>
               </li>
               <li className={styles.sideMenuListItem}>
-                <div>
+                <div className={styles.listElementContainer}>
                   <Trophy styleOverride={styleOverrideIcons} />
                   <Link href={''}>Precios</Link>
                 </div>
               </li>
               <li className={styles.sideMenuListItem}>
-                <div>
+                <div className={styles.listElementContainer}>
                   <Chart styleOverride={styleOverrideIcons} />
                   <Link href={''}>Asistencia</Link>
                 </div>
               </li>
               <Divider />
-              <li className={styles.sideMenuListItem}>
-                <div>
-                  <Login styleOverride={styleOverrideIcons} />
-                  <Link href={'/login'}>Acceder</Link>
-                </div>
-              </li>
-              <li className={styles.sideMenuListItem}>
-                <div>
-                  <Register styleOverride={styleOverrideIcons} />
-                  <Link href={'/register'}>Registrar</Link>
-                </div>
-              </li>
+              {!(isValid && user !== null) ? (
+                <>
+                  <li className={styles.sideMenuListItem}>
+                    <div className={styles.listElementContainer}>
+                      <Login styleOverride={styleOverrideIcons} />
+                      <Link href={'/login'}>Acceder</Link>
+                    </div>
+                  </li>
+                  <li className={styles.sideMenuListItem}>
+                    <div className={styles.listElementContainer}>
+                      <Register styleOverride={styleOverrideIcons} />
+                      <Link href={'/register'}>Registrar</Link>
+                    </div>
+                  </li>
+                </>
+              ) : (
+                <li className={styles.sideMenuListItem}>
+                  <UserHeader
+                    userData={user}
+                    onLogout={handleLogout}
+                    onProfileClick={handleProfileClick}
+                    onSettingsClick={handleSettingsClick}
+                  />
+                </li>
+              )}
             </ul>
           </div>,
           document.body

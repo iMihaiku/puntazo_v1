@@ -1,5 +1,5 @@
 .toastContainer {
-  position: absolute;
+  position: fixed; /* Cambiamos absolute por fixed */
   right: 20px;
   top: 20px;
   border-radius: 5px;
@@ -8,6 +8,25 @@
   flex-direction: column;
   width: 400px;
   height: 120px;
+  animation: slideIn 0.3s ease-out forwards;
+  overflow: hidden; /* Añadimos overflow hidden */
+}
+
+/* Añadimos un wrapper para el toast */
+.toastWrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  pointer-events: none; /* Permite hacer click en elementos debajo */
+  z-index: 9999;
+  overflow: hidden; /* Previene scrollbars */
+  width: calc(400px + 40px); /* Ancho del toast + margen */
+  height: calc(120px + 40px); /* Alto del toast + margen */
+}
+
+
+.toastContainer.hiding {
+  animation: slideOut 0.3s ease-in forwards;
 }
 .toastBody {
   display: flex;
@@ -56,5 +75,23 @@
   }
   to {
     width: 0%;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(120%);
   }
 }

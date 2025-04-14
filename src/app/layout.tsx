@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import './main.css'
 import { DeviceProvider } from '@/hooks/useContextMobile'
 import { ToastProvider } from '@/components/Toast/useProviderToast'
+import { SessionProvider } from '@/hooks/useContextSession'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,9 +19,11 @@ export default async function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className} id="body">
-        <DeviceProvider>
-          <ToastProvider>{children}</ToastProvider>
-        </DeviceProvider>
+        <SessionProvider>
+          <DeviceProvider>
+            <ToastProvider>{children}</ToastProvider>
+          </DeviceProvider>
+        </SessionProvider>
       </body>
     </html>
   )

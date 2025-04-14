@@ -129,7 +129,7 @@
   list-style: none;
   padding: 0px 25px;
 }
-.sideMenuListItem div{
+.listElementContainer{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -139,12 +139,22 @@
   padding: 7px 0;
   font-size: 20px;
   color: white;
-  
+}
+.listElementContainer div{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+  position: relative;
+  padding: 7px 0;
+  font-size: 20px;
+  color: white;
 }
 .sideMenuListItem:hover{
 background-color: #313131;
 }
-.sideMenuListItem div:hover{
+.listElementContainer:hover{
   background: linear-gradient(to left, #2dd4bf, #60a5fa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

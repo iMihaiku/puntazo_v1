@@ -75,3 +75,6 @@
   color: #b3b3b3 !important;
   cursor: not-allowed !important;
 }
+.form form {
+  width: 100%;
+}

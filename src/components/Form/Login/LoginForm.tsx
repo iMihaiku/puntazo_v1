@@ -68,11 +68,7 @@ export default function LoginForm(): JSX.Element {
       })
   }
   return (
-    <form
-      className={stylesDefault.formDefault + ' ' + styles.form}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
-    >
+    <section className={stylesDefault.formDefault + ' ' + styles.form}>
       <section className={styles.formHeader}>
         <Logo />
         <h2>Accede con tu cuenta</h2>
@@ -105,36 +101,38 @@ export default function LoginForm(): JSX.Element {
       <Divider
         styleOverride={{ borderColor: 'rgb(44, 44, 44)', margin: '15px 0' }}
       />
-      <div className={styles.formFields}>
-        <TextField
-          name="email"
-          value={form.email}
-          type="email"
-          label="Correo"
-          variant="outlined"
-          size="small"
-          helperText={errors.email}
-          error={errors.email.length > 1}
-        />
-        <TextField
-          name="password"
-          value={form.password}
-          type="password"
-          label="Contraseña"
-          variant="outlined"
-          size="small"
-          helperText={errors.password}
-          error={errors.password.length > 1}
-        />
-      </div>
+      <form onChange={handleChange} onSubmit={handleSubmit}>
+        <div className={styles.formFields}>
+          <TextField
+            name="email"
+            value={form.email}
+            type="email"
+            label="Correo"
+            variant="outlined"
+            size="small"
+            helperText={errors.email}
+            error={errors.email.length > 1}
+          />
+          <TextField
+            name="password"
+            value={form.password}
+            type="password"
+            label="Contraseña"
+            variant="outlined"
+            size="small"
+            helperText={errors.password}
+            error={errors.password.length > 1}
+          />
+        </div>
 
-      <Button
-        styleOverride={buttonStyleOverride}
-        type="submit"
-        className={isValidForm ? styles.submitEnable : styles.submitDisabled}
-      >
-        Acceder
-      </Button>
-    </form>
+        <Button
+          styleOverride={buttonStyleOverride}
+          type="submit"
+          className={isValidForm ? styles.submitEnable : styles.submitDisabled}
+        >
+          Acceder
+        </Button>
+      </form>
+    </section>
   )
 }
